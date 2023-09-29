@@ -9,6 +9,7 @@ import Login from "./Login";
 import About from "./About";
 import Footer from "./components/Footer";
 import { NoteProvider } from "./context/NoteContext";
+import Single from "./Single";
 function App() {
   return (
     <>
@@ -16,6 +17,8 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
+            
+            <Route path="/singleProduct/:id" element={<Single />}></Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/products" element={<Products />}></Route>

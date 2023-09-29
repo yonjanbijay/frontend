@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useReducer, createContext, useEffect } from "react";
 import reducer from "../reducer/reducer";
 const NoteContext = createContext();
-const API = "https://api.pujakaitem.com/api/products"
+const API = "http://127.0.0.1:8000/api/motorcycle/?format=json"
 const initialState = {
     isLoading: false,
     isError: false,
@@ -16,15 +16,18 @@ const NoteProvider = ({ children }) => {
     const getProducts = async (url) => {
         dispatch({ type: "loading" });
         try {
-            const res = await axios.get();
+            const res = await axios.get(url);
             const products = await res.data;
-            dispatch({ type: "data", payload: products })
+            console.log("🚀 ~ file: NoteContext.jsx:21 ~ getProducts ~ products:", products)
+            dispatch({ type: "data", payload: products });
         } catch (error) {
             dispatch({ type: "error" });
 
         }
 
     };
+
+
 
     useEffect(() => {
         getProducts(API);
